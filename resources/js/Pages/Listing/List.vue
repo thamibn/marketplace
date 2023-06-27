@@ -103,7 +103,7 @@ function truncateTitle(source, size = 10) {
                     <div class="p-6">
                         <a :href="route('listing.show', listing.slug)" class="text-2xl font-bold cursor-pointer">{{ truncateTitle(listing.title, 35) }}</a>
                         <div class="mt-2">
-                            <span class="text-xl font-extrabold text-blue-600">R{{ listing.price }}</span>
+                            <span class="text-xl font-extrabold text-blue-600">{{ listing.price }}</span>
                         </div>
                     </div>
                     <div class="p-4 text-gray-700 border-t border-gray-300">
@@ -111,7 +111,7 @@ function truncateTitle(source, size = 10) {
                             <p>Category: {{ listing.category.name }}</p>
                         </div>
                         <div class="flex items-center">
-                            <p>3 mins ago</p>
+                            <p>{{ listing.created_at }}</p>
                         </div>
                     </div>
 

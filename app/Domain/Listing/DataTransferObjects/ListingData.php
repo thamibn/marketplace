@@ -3,6 +3,7 @@
 namespace App\Domain\Listing\DataTransferObjects;
 
 use App\Domain\Listing\Models\Listing;
+use App\Domain\Listing\MoneyCast;
 use App\Domain\Shared\DataTransferObjects\CategoryData;
 use App\Domain\Shared\Models\Category;
 use Illuminate\Http\Request;
@@ -20,11 +21,12 @@ class ListingData extends Data
         public readonly string  $description,
         public readonly string  $date_online,
         public readonly string  $date_offline,
-        public readonly int     $price,
+        public readonly MoneyCast|string|Array  $price,
         public readonly string  $currency,
         public readonly string  $mobile,
         public readonly string  $email,
         public readonly null|Lazy|CategoryData $category,
+        public readonly ?string $created_at,
     )
     {}
 
@@ -50,7 +52,7 @@ class ListingData extends Data
             'title' => ['required', 'max:50', Rule::unique('listings', 'title')->ignore(request('title'))],
             'description' => ['required', 'min:3'],
             'price' => ['required', 'regex:/^\d+(\.\d{1,2})?$/'],
-            'currency' => ['required', 'string', 'max:2'],
+            'currency' => ['required', 'string', 'max:10'],
             'date_online' => ['required', 'date', 'date_format:Y-m-d'],
             'date_offline' => ['required', 'date', 'date_format:Y-m-d'],
             'mobile' => ['required', 'regex:/^([0-9\s\-\+\(\)]*)$/', 'min:10', 'max:20'],

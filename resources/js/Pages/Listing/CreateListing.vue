@@ -81,7 +81,7 @@ const onFormSubmit = () => {
                                     v-model="form.currency"
                                     class="w-full p-2 bg-white border border-gray-400 rounded outline-none focus:ring-1">
                                     <option value="">----</option>
-                                    <option :value="currency" v-for="(currency, index) in ['R', '$']" :key="index">
+                                    <option :value="currency" v-for="(currency, index) in ['ZAR', 'USD']" :key="index">
                                         {{ currency }}
                                     </option>
                                 </select>

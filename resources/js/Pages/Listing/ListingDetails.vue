@@ -23,7 +23,7 @@ console.log(props.model)
 
             </h1>
             <div class="text-white">
-                <span class="text-blue-800">Home / </span><span class="text-sm text-gray-100">Details</span>
+                <span class="text-blue-800"><a :href="route('listing.index')">Home</a> / </span><span class="text-sm text-gray-100">Details</span>
             </div>
         </section>
 

@@ -3,8 +3,11 @@
 namespace App\Domain\Listing\Models;
 
 use App\Domain\Listing\DataTransferObjects\ListingData;
+use App\Domain\Listing\MoneyCast;
 use App\Domain\Shared\Models\BaseModel;
 use App\Domain\Shared\Models\Category;
+use Carbon\Carbon;
+use Cknow\Money\Money;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Spatie\LaravelData\WithData;
@@ -26,21 +29,18 @@ class Listing extends BaseModel
         'email',
         'category_id',
     ];
+    protected $casts = [
+        'price' => MoneyCast::class,
+    ];
 
     public function uniqueIds(): array
     {
         return ['uuid'];
     }
 
-    public function scopeFromDate(Builder $query, $date): Builder
-    {
-        return $query->where('date', '>=', $date);
+    public function getCreatedAtAttribute($value){
+        return Carbon::parse($value)->diffForHumans();
     }
-    public function scopeToDate(Builder $query, $date): Builder
-    {
-        return $query->where('date', '<=', $date);
-    }
-
     public function category()
     {
         return $this->belongsTo(Category::class);
