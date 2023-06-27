@@ -22,8 +22,15 @@ composer install --ignore-platform-reqs
 
 3. ./vendor/bin/sail artisan migrate --seed
 
-4. ./vendor/bin/sail npm run dev
+4. ./vendor/bin/sail artisan test
+
+5. ./vendor/bin/sail npm run dev
 
 ```
+
 access the site on 127.0.0.0:8000
+
+contact details <br>
+Email: `thamibn@live.co.za` <br>
+Phone:`065 927 1587`
 
