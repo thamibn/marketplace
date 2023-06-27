@@ -27,7 +27,7 @@ class Listing extends BaseModel
         'category_id',
     ];
 
-    public function uniqueIds()
+    public function uniqueIds(): array
     {
         return ['uuid'];
     }

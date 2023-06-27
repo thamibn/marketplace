@@ -10,6 +10,7 @@ use Spatie\LaravelData\Data;
 class CategoryData extends Data
 {
     public function __construct(
+        public readonly ?string $id,
         public readonly ?string $uuid,
         public readonly string  $name,
     )

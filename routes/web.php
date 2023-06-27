@@ -17,15 +17,14 @@ use Inertia\Inertia;
 */
 
 Route::get('/', [ListingController::class, 'index'])->name('listing.index');
-
-Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/listing/{listing:slug}', [ListingController::class, 'show'])->name('listing.show');
 
 Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::get('/listing', [ListingController::class, 'create'])->name('listing.create');
+    Route::post('/listing', [ListingController::class, 'store'])->name('listing.store');
+    Route::get('/dashboard', function () {
+        return redirect()->route('listing.index');
+    })->name('dashboard');
 });
 
 require __DIR__.'/auth.php';

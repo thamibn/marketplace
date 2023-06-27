@@ -59,10 +59,10 @@ function truncateTitle(source, size = 10) {
         <div class="m-4 lg:m-0">
             <div class="p-8 bg-white lg:flex lg:items-center lg:justify-center">
                 <form class="space-y-4 lg:space-y-0 lg:flex lg:space-x-4 lg:flex-nowrap">
-                    <div class="">
+                    <div>
                         <select
                             v-model="params.category"
-                            class="w-[15rem] p-2 bg-white border border-gray-400 rounded outline-none focus:ring-2">
+                            class="w-full lg:w-[15rem] p-2 bg-white border border-gray-400 rounded outline-none focus:ring-2">
                             <option value="">----</option>
                             <option :value="category.name" v-for="category in categories" :key="category.id">
                                 {{ category.name }}
@@ -71,7 +71,7 @@ function truncateTitle(source, size = 10) {
                     </div>
                     <div>
                         <input type="text" v-model="params.title"
-                               class="w-[35rem] p-2 border border-gray-400 rounded outline-none focus:ring-2"
+                               class="w-full lg:w-[35rem] p-2 border border-gray-400 rounded outline-none focus:ring-2"
                                Placeholder="title" />
                     </div>
                     <div>
@@ -85,7 +85,7 @@ function truncateTitle(source, size = 10) {
         </div>
         <!-- All Property -->
         <section class="px-4 py-4 bg-gray-200 lg:px-20 lg:py-8">
-            sort by: <div class="">
+            sort by: <div>
             <select
                 v-model="params.sort_field"
                 class="w-[15rem] p-2 bg-white border border-gray-400 rounded outline-none focus:ring-2">
@@ -97,11 +97,11 @@ function truncateTitle(source, size = 10) {
         </div>
             <div class="mt-4 space-y-2 lg:gap-4 lg:flex lg:items-center lg:flex-wrap lg:mt-20">
                 <div v-for="listing in props.model.listings.data" class="p-4 bg-white rounded-lg">
-                    <img src="https://images.unsplash.com/photo-1601760562234-9814eea6663a?ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8cmVhbGVzdGF0ZXxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
+                    <img class="sm:w-full" src="https://images.unsplash.com/photo-1601760562234-9814eea6663a?ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8cmVhbGVzdGF0ZXxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
                          alt="property">
 
                     <div class="p-6">
-                        <h4 class="text-2xl font-bold cursor-pointer">{{ truncateTitle(listing.title, 35) }}</h4>
+                        <a :href="route('listing.show', listing.slug)" class="text-2xl font-bold cursor-pointer">{{ truncateTitle(listing.title, 35) }}</a>
                         <div class="mt-2">
                             <span class="text-xl font-extrabold text-blue-600">R{{ listing.price }}</span>
                         </div>
