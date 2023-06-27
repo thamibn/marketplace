@@ -72,36 +72,45 @@ function truncateTitle(source, size = 10) {
                     <div>
                         <input type="text" v-model="params.title"
                                class="w-full lg:w-[35rem] p-2 border border-gray-400 rounded outline-none focus:ring-2"
-                               Placeholder="title" />
+                               Placeholder="title"/>
                     </div>
                     <div>
-                        <button @click="searchListing" type="button" class="px-8 py-2 text-blue-100 bg-gray-600 rounded">
-                            Search</button>
-                        <button @click="clearFilter" type="button" class="px-8 py-2 text-white bg-red-600 rounded ml-2.5">
-                            Clear Filter</button>
+                        <button @click="searchListing" type="button"
+                                class="px-8 py-2 text-blue-100 bg-gray-600 rounded">
+                            Search
+                        </button>
+                        <button @click="clearFilter" type="button"
+                                class="px-8 py-2 text-white bg-red-600 rounded ml-2.5">
+                            Clear Filter
+                        </button>
                     </div>
                 </form>
             </div>
         </div>
         <!-- All Property -->
-        <section class="px-4 py-4 bg-gray-200 lg:px-20 lg:py-8">
-            sort by: <div>
-            <select
-                v-model="params.sort_field"
-                class="w-[15rem] p-2 bg-white border border-gray-400 rounded outline-none focus:ring-2">
-                <option>----</option>
-                <option :value="sort.value" v-for="(sort, index) in [{label:'Price Low', value:'price'}, {label:'Price High', value:'-price'}]" :key="index">
-                    {{ sort.label }}
-                </option>
-            </select>
-        </div>
+        <section class="px-4 py-4 bg-gray-200 lg:px-20 lg:py-8 overflow-y-scroll">
+            sort by:
+            <div>
+                <select
+                    v-model="params.sort_field"
+                    class="w-[15rem] p-2 bg-white border border-gray-400 rounded outline-none focus:ring-2">
+                    <option>----</option>
+                    <option :value="sort.value"
+                            v-for="(sort, index) in [{label:'Price Low', value:'price'}, {label:'Price High', value:'-price'}]"
+                            :key="index">
+                        {{ sort.label }}
+                    </option>
+                </select>
+            </div>
             <div class="mt-4 space-y-2 lg:gap-4 lg:flex lg:items-center lg:flex-wrap lg:mt-20">
                 <div v-for="listing in props.model.listings.data" class="p-4 bg-white rounded-lg">
-                    <img class="sm:w-full" src="https://images.unsplash.com/photo-1601760562234-9814eea6663a?ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8cmVhbGVzdGF0ZXxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
+                    <img class="sm:w-full"
+                         src="https://images.unsplash.com/photo-1601760562234-9814eea6663a?ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8cmVhbGVzdGF0ZXxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
                          alt="property">
 
                     <div class="p-6">
-                        <a :href="route('listing.show', listing.slug)" class="text-2xl font-bold cursor-pointer">{{ truncateTitle(listing.title, 35) }}</a>
+                        <a :href="route('listing.show', listing.slug)"
+                           class="text-2xl font-bold cursor-pointer">{{ truncateTitle(listing.title, 35) }}</a>
                         <div class="mt-2">
                             <span class="text-xl font-extrabold text-blue-600">{{ listing.price }}</span>
                         </div>
