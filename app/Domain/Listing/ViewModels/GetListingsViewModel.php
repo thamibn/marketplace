@@ -4,6 +4,7 @@ namespace App\Domain\Listing\ViewModels;
 
 use App\Domain\Listing\DataTransferObjects\ListingData;
 use App\Domain\Listing\Models\Listing;
+use Domain\Listing\Filters\CategoryFilter;
 use Domain\Shared\ViewModels\BaseViewModel;
 use Illuminate\Support\Facades\Log;
 use Spatie\QueryBuilder\AllowedFilter;
@@ -17,16 +18,15 @@ class GetListingsViewModel extends BaseViewModel
 
     public function listings()
     {
-
-        Log::debug(request()->query());
-
         $listings = QueryBuilder::for(Listing::query())
-            ->defaultSort('date')
-            ->allowedSorts('date', 'reason')
+            ->with('category')
+            ->defaultSort('title')
+            ->allowedSorts('title', 'price')
             ->allowedFilters([
-                'date',
-                AllowedFilter::scope('from_date'),
-                AllowedFilter::scope('to_date'),
+                'title',
+                AllowedFilter::custom('category', new CategoryFilter(
+                    'category.name'
+                ))
             ])
             ->paginate($this->currentPage)
             ->appends(request()->query());
