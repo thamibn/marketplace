@@ -92,9 +92,9 @@ function truncateTitle(source, size = 10) {
             sort by:
             <div>
                 <select
+                    @change="searchListing"
                     v-model="params.sort_field"
                     class="w-[15rem] p-2 bg-white border border-gray-400 rounded outline-none focus:ring-2">
-                    <option>----</option>
                     <option :value="sort.value"
                             v-for="(sort, index) in [{label:'Price Low', value:'price'}, {label:'Price High', value:'-price'}]"
                             :key="index">
