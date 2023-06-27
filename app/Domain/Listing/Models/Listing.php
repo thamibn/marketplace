@@ -7,15 +7,16 @@ use App\Domain\Listing\MoneyCast;
 use App\Domain\Shared\Models\BaseModel;
 use App\Domain\Shared\Models\Category;
 use Carbon\Carbon;
-use Cknow\Money\Money;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Support\Str;
 use Spatie\LaravelData\WithData;
 
 class Listing extends BaseModel
 {
     use hasUuids;
     use withData;
+    use HasFactory;
     protected string $dataClass = ListingData::class;
     protected $fillable = [
         'title',
@@ -44,5 +45,14 @@ class Listing extends BaseModel
     public function category()
     {
         return $this->belongsTo(Category::class);
+    }
+
+    protected static function newFactory()
+    {
+        $parts = Str::of(get_called_class())->explode("\\");
+        $domain = $parts[2];
+        $model = $parts->last();
+
+        return app("Database\\Factories\\{$domain}\\{$model}Factory");
     }
 }

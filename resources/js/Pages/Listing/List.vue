@@ -123,7 +123,9 @@ function truncateTitle(source, size = 10) {
                             <p>{{ listing.created_at }}</p>
                         </div>
                     </div>
-
+                </div>
+                <div v-if="props.model.listings.data.length === 0">
+                    <span class="text-2xl text-red-600">No results found</span>
                 </div>
             </div>
 
