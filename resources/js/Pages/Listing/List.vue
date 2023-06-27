@@ -58,7 +58,7 @@ function truncateTitle(source, size = 10) {
         <!-- listing search section -->
         <div class="m-4 lg:m-0">
             <div class="p-8 bg-white lg:flex lg:items-center lg:justify-center">
-                <form class="space-y-4 lg:space-y-0 lg:flex lg:space-x-4 lg:flex-nowrap">
+                <form @submit.prevent="searchListing" class="space-y-4 lg:space-y-0 lg:flex lg:space-x-4 lg:flex-nowrap">
                     <div>
                         <select
                             v-model="params.category"
@@ -75,7 +75,7 @@ function truncateTitle(source, size = 10) {
                                Placeholder="title"/>
                     </div>
                     <div>
-                        <button @click="searchListing" type="button"
+                        <button type="submit"
                                 class="px-8 py-2 text-blue-100 bg-gray-600 rounded">
                             Search
                         </button>
