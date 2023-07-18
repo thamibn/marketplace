@@ -18,6 +18,6 @@ class UpsertListingViewModel extends BaseViewModel
             return null;
         }
 
-        return $this->listing->getData();
+        return ListingData::fromModel($this->listing);
     }
 }

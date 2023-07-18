@@ -6,7 +6,6 @@ use App\Domain\Listing\DataTransferObjects\ListingData;
 use App\Domain\Listing\Models\Listing;
 use Domain\Listing\Filters\CategoryFilter;
 use Domain\Shared\ViewModels\BaseViewModel;
-use Illuminate\Support\Facades\Log;
 use Spatie\QueryBuilder\AllowedFilter;
 use Spatie\QueryBuilder\QueryBuilder;
 
@@ -33,10 +32,4 @@ class GetListingsViewModel extends BaseViewModel
 
         return ListingData::collection($listings);
     }
-
-    public function total(): int
-    {
-        return Listing::count();
-    }
-
 }
